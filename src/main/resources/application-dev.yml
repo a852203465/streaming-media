@@ -1,0 +1,35 @@
+server:
+  port: 8081
+
+spring:
+
+  # MYSQL
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/stream-media?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    username: root
+    password: 123456
+
+
+ffmpeg:
+  #ffmpeg执行路径，一般为ffmpeg的安装目录，该路径只能是目录，不能为具体文件路径，否则会报错
+  path: D:/ffmpeg/bin/
+  #开启保活线程
+  keepalive: true
+  # 流媒体应用名称
+  appName: live
+  # 空闲时间后停止推流，单位秒
+  destroyDelay: 15
+
+# ip port 配置
+url:
+  # ip 配置
+  ip:
+    # 流媒体服务器IP
+    srsIp:  192.168.37.128
+    serverIp: 192.168.37.128
+    dvrIp: 192.168.37.128
+  # port 配置
+  port:
+    srsPort: 1985
+    srsStreamPort: 8080
+    dvrPort: 9077

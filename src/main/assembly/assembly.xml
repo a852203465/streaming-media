@@ -1,0 +1,87 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+    <id>assembly</id>
+
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+
+    <files>
+
+        <!-- 项目JAR -->
+        <file>
+            <source>
+                ${project.build.directory}/${project.build.finalName}.${project.packaging}
+            </source>
+            <outputDirectory>target</outputDirectory>
+            <fileMode>0644</fileMode>
+        </file>
+
+        <!-- JDK -->
+        <file>
+            <source>${project.basedir}/jdk-8u202-linux-x64.tar.gz</source>
+            <outputDirectory/>
+            <fileMode>0755</fileMode>
+        </file>
+
+        <!-- ffmpeg 环境 -->
+        <file>
+            <source>${project.basedir}/ffmpeg</source>
+            <outputDirectory/>
+            <fileMode>0755</fileMode>
+        </file>
+        <file>
+            <source>${project.basedir}/ffmpeg-model.tar.gz</source>
+            <outputDirectory/>
+            <fileMode>0755</fileMode>
+        </file>
+
+        <!-- Docker 配置 -->
+        <file>
+            <source>${project.basedir}/Dockerfile</source>
+            <outputDirectory/>
+            <fileMode>0644</fileMode>
+        </file>
+        <file>
+            <source>${project.basedir}/media-stream.env</source>
+            <outputDirectory/>
+            <fileMode>0644</fileMode>
+        </file>
+        <file>
+            <source>${project.basedir}/docker-compose.yml</source>
+            <outputDirectory/>
+            <fileMode>0644</fileMode>
+        </file>
+
+        <!-- SRS 配置 -->
+        <file>
+            <source>${project.basedir}/srs</source>
+            <outputDirectory/>
+            <fileMode>0755</fileMode>
+        </file>
+        <file>
+            <source>${project.basedir}/srs.conf</source>
+            <outputDirectory/>
+            <fileMode>0755</fileMode>
+        </file>
+
+        <!-- 启动脚本 -->
+        <file>
+            <source>${project.basedir}/entrypoint.sh</source>
+            <outputDirectory/>
+            <fileMode>0755</fileMode>
+        </file>
+
+        <!-- 代理 -->
+        <file>
+            <source>
+                ${project.basedir}/default.conf
+            </source>
+            <outputDirectory>conf.d</outputDirectory>
+            <fileMode>0644</fileMode>
+        </file>
+
+    </files>
+
+</assembly>

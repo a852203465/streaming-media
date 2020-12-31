@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.darkjrong.streamingmedia.mapper.DeviceMapper">
+  <resultMap id="BaseResultMap" type="cn.darkjrong.streamingmedia.common.pojo.entity.Device">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="created_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="created_time" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="updated_time" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="updated_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="serial_number" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ip" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="description" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="port" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="username" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="online" javaType="java.lang.Byte" jdbcType="TINYINT"/>
+      <arg column="main_streams" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="subcode_flows" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, created_user, created_time, updated_time, updated_user, serial_number, ip, description,
+    port, username, password, name, online, main_streams, subcode_flows
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from device
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from device
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.darkjrong.streamingmedia.common.pojo.entity.Device">
+    insert into device (id, created_user, created_time,
+      updated_time, updated_user, serial_number,
+      ip, description, port,
+      username, password, name, online, main_streams, subcode_flows
+      )
+    values (#{id,jdbcType=BIGINT}, #{createdUser,jdbcType=VARCHAR}, #{createdTime,jdbcType=BIGINT},
+      #{updatedTime,jdbcType=BIGINT}, #{updatedUser,jdbcType=VARCHAR}, #{serialNumber,jdbcType=VARCHAR},
+      #{ip,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{port,jdbcType=VARCHAR},
+      #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+      #{online,jdbcType=TINYINT}, #{mainStreams,jdbcType=VARCHAR}, #{subcodeFlows,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.darkjrong.streamingmedia.common.pojo.entity.Device">
+    insert into device
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createdUser != null">
+        created_user,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+      <if test="updatedUser != null">
+        updated_user,
+      </if>
+      <if test="serialNumber != null">
+        serial_number,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="port != null">
+        port,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="online != null">
+        online,
+      </if>
+      <if test="mainStreams != null">
+        main_streams,
+      </if>
+      <if test="subcodeFlows != null">
+        subcode_flows,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createdUser != null">
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=BIGINT},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=BIGINT},
+      </if>
+      <if test="updatedUser != null">
+        #{updatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNumber != null">
+        #{serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null">
+        #{port,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{online,jdbcType=TINYINT},
+      </if>
+      <if test="mainStreams != null">
+        #{mainStreams,jdbcType=VARCHAR},
+      </if>
+      <if test="subcodeFlows != null">
+        #{subcodeFlows,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.darkjrong.streamingmedia.common.pojo.entity.Device">
+    update device
+    <set>
+      <if test="createdUser != null">
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=BIGINT},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=BIGINT},
+      </if>
+      <if test="updatedUser != null">
+        updated_user = #{updatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNumber != null">
+        serial_number = #{serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null">
+        port = #{port,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="online != null">
+        online = #{online,jdbcType=TINYINT},
+      </if>
+      <if test="mainStreams != null">
+        main_streams = #{mainStreams,jdbcType=VARCHAR},
+      </if>
+      <if test="subcodeFlows != null">
+        subcode_flows = #{subcodeFlows,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.darkjrong.streamingmedia.common.pojo.entity.Device">
+    update device
+    set created_user = #{createdUser,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=BIGINT},
+      updated_time = #{updatedTime,jdbcType=BIGINT},
+      updated_user = #{updatedUser,jdbcType=VARCHAR},
+      serial_number = #{serialNumber,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      port = #{port,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      online = #{online,jdbcType=TINYINT},
+      main_streams = #{mainStreams,jdbcType=VARCHAR},
+      subcode_flows = #{subcodeFlows,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findAll" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from device;
+   </select>
+   <select id="findDeviceByIp" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from device where ip = #{ip,jdbcType=VARCHAR}
+    </select><select id="findDevices" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from device
+        <where>
+            <if test="ip != null and ip != ''">
+                and ip = #{ip,jdbcType=VARCHAR}
+            </if>
+            <if test="name != null and name != ''">
+                and name like concat("%", #{name,jdbcType=VARCHAR}, "%")
+            </if>
+        </where>
+    </select><update id="updateOnlineById">
+        update device set online = #{online,jdbcType=TINYINT}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+</mapper>

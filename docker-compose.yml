@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  streamingmedia:
+    image: streaming-media:1.0.0
+    container_name: streaming-media
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 8080:8080
+      - 1935:1935
+      - 9000:9000
+      - 8081:8081
+    env_file:
+      - media-stream.env
+    volumes:
+      - ./logs:/home/app/logs
+      - /data/stream-media/video/dvr:/home/srs-3.0/objs/dvr
+    networks:
+      - media_net
+
+  proxy:
+    image: nginx:1.14
+    container_name: proxy
+    restart: always
+    ports:
+      - 9077:80
+    volumes:
+      - ./logs/proxy:/var/log/nginx
+      - ./conf.d:/etc/nginx/conf.d
+      - /data/stream-media/video/dvr:/dvr
+    networks:
+      - media_net
+
+networks:
+  media_net:
+    external: true
